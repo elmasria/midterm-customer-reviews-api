@@ -49,7 +49,7 @@ public class CommentsController {
      */
     @RequestMapping(value = "/reviews/{reviewId}", method = RequestMethod.GET)
     public ResponseEntity<List<Comment>> listCommentsForReview(@PathVariable("reviewId") Integer reviewId) {
-        List<Comment> reviewsList = commentsRepository.findCommentByReviewId(reviewId);
+        List<Comment> reviewsList = commentsRepository.findCommentByReview_id(reviewId);
         if (reviewsList != null) {
             return new ResponseEntity<>(reviewsList, HttpStatus.OK);
         }

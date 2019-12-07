@@ -15,11 +15,11 @@ public class Review {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "productId")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @NotNull
-    private String ownerName;
+    private String owner;
 
     @NotNull
     private String title;
@@ -28,11 +28,15 @@ public class Review {
     private String review;
 
     @CreatedDate
-    private LocalDateTime createDate;
+    private LocalDateTime created;
 
     @OneToMany(mappedBy = "review")
     @JsonManagedReference
     private List<Comment> comments;
+
+    public Review() {
+        this.created = LocalDateTime.now();
+    }
 
     public Integer getId() {
         return id;
@@ -58,11 +62,11 @@ public class Review {
     }
 
     public LocalDateTime getCreateDate() {
-        return createDate;
+        return created;
     }
 
     public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
+        this.created = createDate;
     }
 
     public String getReview() {
@@ -74,11 +78,11 @@ public class Review {
     }
 
     public String getOwnerName() {
-        return ownerName;
+        return owner;
     }
 
     public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+        this.owner = ownerName;
     }
 
     public List<Comment> getComments() {

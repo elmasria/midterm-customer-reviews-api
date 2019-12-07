@@ -16,18 +16,22 @@ public class Comment {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "reviewId")
+    @JoinColumn(name = "review_id")
     @JsonBackReference
     private Review review;
 
     @NotNull
-    private String ownerName;
+    private String owner;
 
     @CreatedDate
-    private LocalDateTime createDate;
+    private LocalDateTime created;
 
     @NotNull
     private String comment;
+
+    public Comment() {
+        this.created = LocalDateTime.now();
+    }
 
     public Integer getId() {
         return id;
@@ -46,19 +50,19 @@ public class Comment {
     }
 
     public String getOwnerName() {
-        return ownerName;
+        return owner;
     }
 
     public void setOwnerName(String authorName) {
-        this.ownerName = authorName;
+        this.owner = authorName;
     }
 
     public LocalDateTime getCreateDate() {
-        return createDate;
+        return created;
     }
 
     public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
+        this.created = createDate;
     }
 
     public String getComment() {

@@ -50,7 +50,7 @@ public class ReviewsController {
      */
     @RequestMapping(value = "/reviews/products/{productId}", method = RequestMethod.GET)
     public ResponseEntity<List<Review>> listReviewsForProduct(@PathVariable("productId") Integer productId) {
-        List<Review> reviews = reviewsRepository.findAllByProductId(productId);
+        List<Review> reviews = reviewsRepository.findAllByProduct_id(productId);
         if (reviews != null){
             return new ResponseEntity<>(reviews, HttpStatus.OK);
         }

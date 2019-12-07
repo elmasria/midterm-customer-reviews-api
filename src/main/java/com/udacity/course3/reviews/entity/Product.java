@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "tbl_products")
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,10 +21,14 @@ public class Product {
     private String description;
 
     @CreatedDate
-    private LocalDateTime createDate;
+    private LocalDateTime created;
 
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
+
+    public Product() {
+        this.created = LocalDateTime.now();
+    }
 
     public Integer getId() {
         return id;
@@ -52,10 +57,10 @@ public class Product {
     }
 
     public LocalDateTime getCreateDate() {
-        return createDate;
+        return created;
     }
 
     public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
+        this.created = createDate;
     }
 }

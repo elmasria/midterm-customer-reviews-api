@@ -1,0 +1,28 @@
+CREATE TABLE tbl_products
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    description TEXT NOT NULL,
+    createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tbl_reviews
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    productId INT NOT NULL,
+    ownerName VARCHAR(30) NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    review TEXT NOT NULL,
+    createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT product_fk FOREIGN KEY (productId) REFERENCES tbl_products(id)
+);
+
+CREATE TABLE tbl_comments
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    reviewId INT NOT NULL,
+    ownerName VARCHAR(30) NOT NULL,
+    comment TEXT NOT NULL,
+    createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT review_fk FOREIGN KEY (reviewId) REFERENCES tbl_reviews(id)
+);
